@@ -1,0 +1,14 @@
+<html>
+<Head><script src="https://unpkg.com/jspsych@7.3.0"></script><script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.2"></script>
+</Head>
+<body>
+<script> const jsPsych = initJsPsych();
+const hello_trial = {
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: 'Hello world!',
+    choices: ['Y', 'N']
+    }
+    jsPsych.run([hello_trial]);
+</script>
+</body>
+</html>
