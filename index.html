@@ -5,15 +5,17 @@
     <link href="https://unpkg.com/jspsych@7.3.0/css/jspsych.css"
         rel="stylesheet" type="text/css" />
     <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.2"></script>
-
+    <script src="stimuli.js"></script>
 </Head>
 <body>
 <script> 
+    
     var jsPsych = initJsPsych({
     on_finish: function() {
     jsPsych.data.displayData();
     }
-    });;
+    })
+    
     var fixation1 = {
      type: jsPsychHtmlKeyboardResponse,
      stimulus: '<p style="font-size: 48px;">+</p>',
@@ -22,7 +24,7 @@
     }
     var sentence = {
     type: jsPsychHtmlKeyboardResponse,
-    stimulus: 'You dropped a balloon on a vase',
+    stimulus: jsPsych.timelineVariable('sentence'),
     choices: " "
     }
     var fixation2 = {
@@ -33,14 +35,23 @@
     }
     var picture = {
     type: jsPsychImageKeyboardResponse,
-    stimulus: "images/cupB.jpg",
+    stimulus: jsPsych.timelineVariable('pic'),
     choices: ['S', 'N', 's', 'n'],
     }
     var end_experiment = {
 type: jsPsychHtmlKeyboardResponse,
 stimulus: 'Thank you for participating! Click any key to end the experiment.'
 }
+    
     jsPsych.run([fixation1,sentence,fixation2,picture,end_experiment]);
+
+    var experiment_procedure = {
+    timeline: [fixation1, sentence, fixation2, picture],
+    timeline_variables: stimuli,
+    randomize_order: true
+    };
+    jsPsych.run([experiment_procedure]);
+    
 </script>
 </body>
 </html>
