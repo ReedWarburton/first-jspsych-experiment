@@ -1,4 +1,4 @@
-stimuli=[
+list1=[
     {
       "sentence": "You drop a bowling ball on a porcelain figure",
       "pic": "figureS.jpg",
